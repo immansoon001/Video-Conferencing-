@@ -4,6 +4,22 @@ import jwt from "jsonwebtoken";
 
 export async function signup(req, res) {
   const { email, password, fullName } = req.body;
+  const avtar = [
+      "Riley",
+      "Jude",
+      "Alexander",
+      "Chase",
+      "Leah",
+      "Adrian",
+      "Christopher",
+      "Caleb",
+      "George",
+      "Kimberly",
+      "Sophia",
+      "Andrea",
+      "Valentina",
+    ];
+
 
   try {
     if (!email || !password || !fullName) {
@@ -25,14 +41,23 @@ export async function signup(req, res) {
       return res.status(400).json({ message: "Email already exists, please use a diffrent one" });
     }
 
+    function getRandomElement(arr) {
+      if (arr.length === 0) return null; // safety net
+      const randomIndex = Math.floor(Math.random() * arr.length);
+      return arr[randomIndex];
+    }
+
     const idx = Math.floor(Math.random() * 100) + 1; // generate a num between 1-100
-    const randomAvatar = `https://avatar.iran.liara.run/public/${idx}.png`;
+    const randomAvtar = getRandomElement(avtar);
+    const genAvtar = `https://api.dicebear.com/9.x/thumbs/svg?seed=${randomAvtar}` 
+
+
 
     const newUser = await User.create({
       email,
       fullName,
       password,
-      profilePic: randomAvatar,
+      profilePic: genAvtar,
     });
 
     try {
