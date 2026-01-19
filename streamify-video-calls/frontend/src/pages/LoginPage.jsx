@@ -2,13 +2,13 @@ import { useState } from "react";
 import { ShipWheelIcon } from "lucide-react";
 import { Link } from "react-router";
 import useLogin from "../hooks/useLogin";
-
+import { Eye,EyeOff } from "lucide-react";
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
-
+const [showPassword, setShowPassword] = useState(false);
   // This is how we did it at first, without using our custom hook
   // const queryClient = useQueryClient();
   // const {
@@ -76,19 +76,36 @@ const LoginPage = () => {
                     />
                   </div>
 
-                  <div className="form-control w-full space-y-2">
+                   {/* PASSWORD */}
+                  <div className="form-control w-full">
                     <label className="label">
-                      <span className="label-text">Password</span>
+                      <span className="label-text font-medium">Password</span>
                     </label>
-                    <input
-                      type="password"
-                      placeholder="••••••••"
-                      className="input input-bordered w-full"
-                      value={loginData.password}
-                      onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                      required
-                    />
-                  </div>
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="********"
+                        className="input input-bordered w-full pr-10" // pr-10 makes room for the icon
+                        value={loginData.password}
+                        onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                        required
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeOff className="size-5 text-base-content/50" />
+                        ) : (
+                         <Eye className="size-5 text-base-content/50" />
+                        )}
+                      </button>
+                    </div>
+                    <p className="text-xs opacity-70 mt-1">
+                      Password must be at least 6 characters long
+                    </p>
+                  </div>           
 
                   <button type="submit" className="btn btn-primary w-full" disabled={isPending}>
                     {isPending ? (
