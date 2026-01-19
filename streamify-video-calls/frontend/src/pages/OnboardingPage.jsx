@@ -38,10 +38,30 @@ const OnboardingPage = () => {
   };
 
   const handleRandomAvatar = () => {
-    const idx = Math.floor(Math.random() * 100) + 1; // 1-100 included
-    const randomAvatar = `https://avatar.iran.liara.run/public/${idx}.png`;
+    const avtar = [
+      "Riley",
+      "Jude",
+      "Alexander",
+      "Chase",
+      "Leah",
+      "Adrian",
+      "Christopher",
+      "Caleb",
+      "George",
+      "Kimberly",
+      "Sophia",
+      "Andrea",
+      "Valentina",
+    ];
+    function getRandomElement(arr) {
+      if (arr.length === 0) return null; // safety net
+      const randomIndex = Math.floor(Math.random() * arr.length);
+      return arr[randomIndex];
+    }
+    const randomAvtar = getRandomElement(avtar);
+    const genAvtar = `https://api.dicebear.com/9.x/thumbs/svg?seed=${randomAvtar}`
 
-    setFormState({ ...formState, profilePic: randomAvatar });
+    setFormState({ ...formState, profilePic: genAvtar});
     toast.success("Random profile picture generated!");
   };
 
