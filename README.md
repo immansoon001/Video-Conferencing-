@@ -29,11 +29,11 @@ Node.js
 
 Express.js
 
-Database
+**Database
 
 MongoDB
 
-Real-Time Communication
+**Real-Time Communication
 
 WebRTC
 
