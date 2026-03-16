@@ -13,7 +13,7 @@
 🌐 Peer-to-Peer Connection – Efficient video communication using WebRTC
 
 🛠️ Tech Stack
-Frontend
+**Frontend
 
 React.js
 
@@ -23,7 +23,7 @@ CSS3
 
 JavaScript
 
-Backend
+**Backend
 
 Node.js
 
