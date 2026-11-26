@@ -34,7 +34,24 @@ NODE_ENV=development
 
 ```
 VITE_STREAM_API_KEY=your_stream_api_key
+VITE_API_URL=
 ```
+
+---
+
+## Deploy the frontend to Vercel
+
+Import this repository into Vercel and deploy from the repository root. The root
+`vercel.json` builds the Vite frontend and rewrites client-side routes to
+`index.html`.
+
+The Express backend is a separate, long-running service and is not deployed by
+this Vercel configuration. Deploy `/backend` to a Node.js host, then set
+`VITE_API_URL` in Vercel to that backend's URL ending in `/api`. Set
+`CLIENT_URL` on the backend to the frontend's exact public origin, for example
+`https://your-project.vercel.app`, and configure the backend's other required
+environment variables there. For authentication cookies, use frontend and
+backend custom domains under the same parent domain.
 
 ---
 
